@@ -1,12 +1,24 @@
 const container = document.querySelector('#container');
-const tiles = document.createElement('div');
 
-const btn = document.createElement('div');
-container.appendChild(btn);
-const button = document.createElement('button');
-button.classList.add('button');
-button.textContent = 'Change Dimensions';
-btn.appendChild(button);
+const tiles = document.createElement('div');
+const btns = document.createElement('div');
+
+let color = 'black';
+
+btns.classList.add('btns');
+
+container.appendChild(btns);
+const dimBtn = document.createElement('button');
+dimBtn.classList.add('button');
+dimBtn.textContent = 'Change Dimensions';
+btns.appendChild(dimBtn);
+
+const rainbowBtn = document.createElement('button');
+rainbowBtn.classList.add('button');
+rainbowBtn.setAttribute('id','rainbow');
+rainbowBtn.background = 'green';
+rainbowBtn.textContent = 'Paint rainbow colors'
+btns.appendChild(rainbowBtn);
 
 tiles.classList.add('tiles');
 container.appendChild(tiles);
@@ -25,16 +37,24 @@ function getRandomNums () {
     return randomNums;
 }
 
-button.addEventListener('click', () => {
+function darken() {
+    return;
+}
+
+dimBtn.addEventListener('click', () => {
     x = prompt('Please enter the number of squares per side, up to 100.');
     if (x > 1 || x < 100) {
-        newBox(x);
+        newBox(x,color);
     } else {
         x = prompt('Invalid input. Please enter a number between 1 and 100');
     }
 });
 
-function makeBox (dim) {
+rainbowBtn.addEventListener('click', () => {
+
+});
+
+function makeBox (dim, color) {
     for (let i = 0; i < dim; i++) {
         const div = document.createElement('div');
         div.classList.add('tile');
@@ -42,8 +62,12 @@ function makeBox (dim) {
         tiles.appendChild(div);
 
         div.addEventListener('mouseover', () => {
-            let rgb = getRandomNums();
-            div.style.background = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
+            if (color === 'rainbow') {
+                let rgb = getRandomNums();
+                div.style.background = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
+            } else if (color === 'darken') {
+                darken();
+            } else div.style.background = 'black';
         });
     }
 }
@@ -60,5 +84,5 @@ function newBox(input) {
     numTiles = input * input;
     tileWidth = `${boxWidth / Math.sqrt(numTiles)}px`;
     clearBox();
-    makeBox(numTiles);
+    makeBox(numTiles,color);
 }
