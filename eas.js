@@ -3,25 +3,36 @@ const container = document.querySelector('#container');
 const tiles = document.createElement('div');
 const btns = document.createElement('div');
 
-let color = 'black';
-
 btns.classList.add('btns');
-
 container.appendChild(btns);
-const dimBtn = document.createElement('button');
-dimBtn.classList.add('button');
-dimBtn.textContent = 'Change Dimensions';
-btns.appendChild(dimBtn);
 
-const rainbowBtn = document.createElement('button');
-rainbowBtn.classList.add('button');
+for (let i = 0; i < 4; i++) {
+    let button = document.createElement('button');
+    button.classList.add('button');
+    button.textContent = 'Button' + i.toString();
+    btns.appendChild(button);
+}
+const buttons = document.getElementsByClassName('button');
+
+const dimBtn = buttons[0];
+dimBtn.textContent = 'Change dimensions';
+
+const rainbowBtn = buttons[1];
 rainbowBtn.setAttribute('id','rainbow');
-rainbowBtn.background = 'green';
 rainbowBtn.textContent = 'Paint rainbow colors'
-btns.appendChild(rainbowBtn);
+
+const blackBtn = buttons[2];
+blackBtn.setAttribute('id','black');
+blackBtn.textContent = 'Paint black'
+
+const darkBtn = buttons[3];
+darkBtn.setAttribute('id','darken');
+darkBtn.textContent = 'Darken by 10%';
 
 tiles.classList.add('tiles');
 container.appendChild(tiles);
+
+let color = 'black';
 
 let x = 16;
 let numTiles = x * x;

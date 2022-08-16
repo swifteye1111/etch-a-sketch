@@ -14,6 +14,15 @@
     background-color: lime;
 }
 
+#black {
+    background-color: black;
+    color: white;
+}
+
+#darken {
+    background-color: lightgrey;
+}
+
 .tiles {
     width: 600px;
     height: 600px;
@@ -27,4 +36,5 @@
     color: white;
     text-align: center;
 }
+
 
