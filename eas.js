@@ -66,6 +66,11 @@ rainbowBtn.addEventListener('click', () => {
     newBox(Math.sqrt(numTiles), color);
 });
 
+blackBtn.addEventListener('click', () => {
+    color = 'black';
+    newBox(Math.sqrt(numTiles,color));
+});
+
 function makeBox (dim, color) {
     for (let i = 0; i < dim; i++) {
         const div = document.createElement('div');
