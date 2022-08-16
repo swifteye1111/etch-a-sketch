@@ -37,7 +37,7 @@ function getRandomNums () {
     return randomNums;
 }
 
-function darken() {
+function darken(tile) {
     return;
 }
 
@@ -51,7 +51,8 @@ dimBtn.addEventListener('click', () => {
 });
 
 rainbowBtn.addEventListener('click', () => {
-
+    color = 'rainbow';
+    newBox(Math.sqrt(numTiles), color);
 });
 
 function makeBox (dim, color) {
@@ -66,7 +67,7 @@ function makeBox (dim, color) {
                 let rgb = getRandomNums();
                 div.style.background = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
             } else if (color === 'darken') {
-                darken();
+                darken(div);
             } else div.style.background = 'black';
         });
     }
