@@ -49,7 +49,29 @@ function getRandomNums () {
 }
 
 function darken(tile) {
-    return;
+    let bkg = tile.style.getPropertyValue('background-color');
+
+    let i = 4;
+    let r = bkg[i];
+    i++;
+    while (bkg[i] !== ',') {
+        r += bkg[i];
+        i++;
+        }
+    i++;
+    let g = bkg[i];
+    while (bkg[i] !== ',') {
+        g += bkg[i];
+        i++;
+    }
+    i++;
+    let b = bkg[i];
+    while (bkg[i] !== ')') {
+        b += bkg[i];
+        i++;
+    }
+    let bkg2 = `rgb(${r*.9},${g*.9},${b*.9})`;
+    tile.style.background = bkg2;
 }
 
 dimBtn.addEventListener('click', () => {
@@ -71,11 +93,17 @@ blackBtn.addEventListener('click', () => {
     newBox(Math.sqrt(numTiles,color));
 });
 
+darkBtn.addEventListener('click', () => {
+    color = 'darken';
+    newBox(Math.sqrt(numTiles,color));
+});
+
 function makeBox (dim, color) {
     for (let i = 0; i < dim; i++) {
         const div = document.createElement('div');
         div.classList.add('tile');
         div.style.width = tileWidth;
+        div.style.background = '#808080';
         tiles.appendChild(div);
 
         div.addEventListener('mouseover', () => {
@@ -84,7 +112,7 @@ function makeBox (dim, color) {
                 div.style.background = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
             } else if (color === 'darken') {
                 darken(div);
-            } else div.style.background = 'black';
+            } else div.style.background = '#000';
         });
     }
 }
